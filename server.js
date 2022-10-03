@@ -1,25 +1,14 @@
 import Fastify from "fastify";
-import { items } from "./items.js";
+import { itemRoutes } from "./routes/items.js";
 const PORT = 5050;
 
 const fastify = Fastify({
   logger: true,
 });
-
+fastify.register(itemRoutes);
 // fastify.get("/items", (req, reply) => {
 //   reply.send({ test: "Hello" });
 // });
-
-fastify.get("/items", (req, reply) => {
-  reply.send(items);
-});
-
-fastify.get("/items/:id", (req, reply) => {
-  const { id } = req.params;
-  const item = items.find((item) => item.id === id);
-
-  reply.send(item);
-});
 
 const start = async () => {
   try {
