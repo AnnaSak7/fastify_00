@@ -35,11 +35,15 @@ const getItemOpts = {
 export const itemRoutes = (fastify, options, done) => {
   fastify.get("/items", getItemsOpts);
 
-  fastify.get("/items/:id", getItemOpts, (req, reply) => {
+  fastify.get(
+    "/items/:id",
+    getItemOpts
+    //   (req, reply) => {
     // const { id } = req.params;
     // const item = items.find((item) => item.id === id);
     // reply.send(item);
-  });
+    //   }
+  );
 
   done();
 };

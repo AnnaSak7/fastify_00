@@ -1,13 +1,23 @@
 import Fastify from "fastify";
+// import fastifySwagger from "fastify-swagger";
 import { itemRoutes } from "./routes/items.js";
 const PORT = 5050;
 
 const fastify = Fastify({
   logger: true,
 });
-fastify.register(itemRoutes);
+
 // fastify.get("/items", (req, reply) => {
 //   reply.send({ test: "Hello" });
+// });
+
+fastify.register(itemRoutes);
+// fastify.register(fastifySwagger, {
+//   exposeRoute: true,
+//   routePrefix: "/docs",
+//   swagger: {
+//     info: { title: "fastify-api" },
+//   },
 // });
 
 const start = async () => {
