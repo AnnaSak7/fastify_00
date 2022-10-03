@@ -1,4 +1,4 @@
-import { items } from "../Items.js";
+import { getItems, getItem } from "../controllers/itemsController.js";
 
 const item = {
   type: "object",
@@ -18,9 +18,9 @@ const getItemsOpts = {
       },
     },
   },
-  handler: function (req, reply) {
-    reply.send(items);
-  },
+  //   handler: function (req, reply) {
+  //     reply.send(items);
+  handler: getItems,
 };
 
 const getItemOpts = {
@@ -29,16 +29,16 @@ const getItemOpts = {
       200: item,
     },
   },
+  handler: getItem,
 };
 
 export const itemRoutes = (fastify, options, done) => {
   fastify.get("/items", getItemsOpts);
 
   fastify.get("/items/:id", getItemOpts, (req, reply) => {
-    const { id } = req.params;
-    const item = items.find((item) => item.id === id);
-
-    reply.send(item);
+    // const { id } = req.params;
+    // const item = items.find((item) => item.id === id);
+    // reply.send(item);
   });
 
   done();
